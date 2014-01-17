@@ -13,23 +13,14 @@ var grafting = (function() {
 		results : undefined
 	};
 
-	function range(min, max) {
-		var sequence = [];
-		var reverse = (min > max);
-		if (reverse) {
-			for (var i = min; i > max; i--) {
-				sequence.push(i);
-			}
-		} else {
-			for (var i = min; i < max; i++) {
-				sequence.push(i);
+	function getGraftingNumbers(limit) {
+		var results = [];
+		for (var i = 0; i < limit; i++) {
+			if (isGraftingNumber(i)) {
+				results.push(i);
 			}
 		}
-		return sequence;
-	}
-
-	function getGraftingNumbers(limit) {
-		display(range(0, limit).filter(isGraftingNumber));
+		display(results);
 	}
 
 	function isGraftingNumber(number) {
@@ -79,10 +70,7 @@ var grafting = (function() {
 		},
 		setResultsList : function(elem) {
 			dom.results = elem;
-		},
-		range : range,
-		isGraftingNumber : isGraftingNumber,
-		display : display
+		}
 	};
 }());
 grafting.setSizeField(document.getElementById('size'));
