@@ -33,9 +33,12 @@ var grafting = (function() {
 	}
 
 	function isGraftingNumber(number) {
-		var rootDigits = Math.sqrt(number).toFixed(PRECISION).replace('.', '');
+		var root = Math.sqrt(number).toFixed(PRECISION);
+		var rootDigits = root.replace('.', '');
 		var numberDigits = number.toFixed(0);
-		return (rootDigits.indexOf(numberDigits) !== -1);
+		var decimalPointPosition = root.indexOf('.');
+		var matchPosition = rootDigits.indexOf(numberDigits);
+		return (matchPosition !== -1 && decimalPointPosition >= matchPosition);
 	}
 
 	function format(number) {
